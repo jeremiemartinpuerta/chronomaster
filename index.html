@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+	
+<html lang="en-US">
+  <head>
+    <title>Chronomaster</title>
+		
+    <base href="file:///home/jeremie/Documents/dev_depot/index.html" target="_self" />
+		
+    <meta charset="UTF-8" />
+	<meta name="author" content="Jeremie MARTIN PUERTA" />
+	<meta name="description" content="Personal operating system" />
+	<meta name="keywords" content="Personal OS, Time master, Chronomaster" />
+		
+	<link rel="stylesheet" type="text/css" href="web/css/chrono_styles.css" />
+	<link rel="stylesheet" type="text/css" href="web/css/chrono_menu.css" />
+	<link rel="stylesheet" type="text/css" href="web/css/chrono_layout.css" />
+		
+  </head>
+	
+  <body>
+	<header id="header"></header>
+		
+	<nav id="navMenu">
+	  <ul id="menu">
+		<li><a onclick="loadSection('Profile')">Profile</a></li>
+		<li><a onclick="loadSection('Activity')">Activity</a></li>
+		<li><a onclick="loadSection('History')">History</a></li>
+		<li><a onclick="loadSection('Model')">Model</a></li>
+		<li><a onclick="loadSection('Plan')">Plan</a></li>
+	  </ul>
+	</nav>
+		
+	<section>
+		<div id="section_title"></div>
+		<div id="section_body"></div>
+	</section>
+	
+	<footer>
+		<p>Chronomaster is a Humanex feature.</p>
+	</footer>
+	
+	<script src="src/js/chrono_function.js"></script>
+	<script src="src/js/chrono_script.js"></script>
+  </body>
+</html>

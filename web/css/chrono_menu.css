@@ -1,0 +1,20 @@
+ul#menu {
+    padding: 0;
+    margin: 10px;
+}
+
+ul#menu li {
+    display: inline;
+}
+
+ul#menu li a {
+    background-color: darkgrey;
+    color: white;
+    padding: 10px 8%;
+    text-decoration: none;
+    border-radius: 5px 5px 0 0;
+}
+
+ul#menu li a:hover {
+    background-color: blue;
+}
