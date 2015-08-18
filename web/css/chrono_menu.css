@@ -9,10 +9,11 @@ ul#menu li {
 
 ul#menu li a {
     background-color: darkgrey;
+    font-family:arial;
     color: white;
-    padding: 10px 8%;
+    padding: 10px 6.5%;
     text-decoration: none;
-    border-radius: 5px 5px 0 0;
+    border-radius: 0px 0px 0 0;
 }
 
 ul#menu li a:hover {

@@ -1,12 +1,28 @@
 header {
     padding:5px;
 }
+
+#navMenu {
+    padding:5px;
+}
+
 nav {
-    padding:5px; 
+    line-height:30px;
+    background-color:#eeeeee;
+    margin-left : 15px;
+    height:500px;
+    width:151px;
+    float:left;
+    padding:5px;
 }
 section {
-    padding:5px; 
+    width:1000px;
+    height:450px;
+    float:left;
+    padding:10px; 
 }
 footer {
+	margin-left : 15px;
+	text-align:center;
     padding:5px; 
 }

@@ -4,22 +4,59 @@ function loadHeader() {
     document.getElementById("header").innerHTML = content ;
 }
 
-function loadSection(localActiveContent) {
+function loadSection(localActiveContent,localActiveSubContent) {
   activeContent = localActiveContent;
-  loadSectionTitle(localActiveContent);
-  loadSectionContent(localActiveContent);
+  activeSubContentContent = localActiveSubContent;
+  loadSectionTitle(localActiveSubContent);
+  loadSectionNav(localActiveContent);
+  loadSectionContent(localActiveContent,localActiveSubContent);
 }
 
-function loadSectionTitle(localActiveContent) {
-    var title_content = '';
-    title_content = title_content + "<h2>" + localActiveContent + "</h2>";
-    document.getElementById("section_title").innerHTML = title_content ;
+function loadSectionTitle(localActiveSubContent) {
+    if (localActiveSubContent != 'Home') {
+      var title_content = '';
+      title_content = title_content + "<h2>" + localActiveSubContent + "</h2>";
+      document.getElementById("section_title").innerHTML = title_content ;
+    }
 }
-
-function loadSectionContent(localActiveContent) {
-	var body_content = '';
+function loadSectionNav(localActiveContent) {
+	var nav_content = '';
+	  //Profile
+	  if (localActiveContent == 'Profile') {
+        nav_content = nav_content + '<h2>Profile</h2>';
+        nav_content = nav_content + '<table><tr><td>Main</td></tr>';
+        nav_content = nav_content + '<tr><td>Parameters</td></tr>';
+        nav_content = nav_content + '<tr><td>Tips</td></tr></table>';
+	  }
 	  //Activity
 	  if (localActiveContent == 'Activity') {
+	    nav_content = nav_content + '<h2>Activity</h2>';
+	    nav_content = nav_content + '<table><tr><td>Main</td></tr></table>';
+	  }
+	  //History
+	  if (localActiveContent == 'History') {
+        nav_content = nav_content + '<h2>History</h2>';
+        nav_content = nav_content + '<table><tr><td>Main</td></tr>';
+        nav_content = nav_content + '<tr><td>Visualization</td></tr>';
+        nav_content = nav_content + '<tr><td>Request</td></tr></table>';
+	  }
+	  //Model
+	  if (localActiveContent == 'Model') {
+	    nav_content = nav_content + '<h2>Model</h2>';
+	    nav_content = nav_content + '<table><tr><td>Main</td></tr></table>';
+	  }
+	  //Plan
+	  if (localActiveContent == 'Plan') {
+	    nav_content = nav_content + '<h2>Plan</h2>';
+	    nav_content = nav_content + '<table><tr><td>Main</td></tr></table>';
+	  }
+	document.getElementById("nav_body").innerHTML = nav_content ;
+}
+
+function loadSectionContent(localActiveContent,localActiveSubContent) {
+	var body_content = '';
+	  //Activity
+	  if (localActiveContent == 'Activity' && localActiveSubContent == 'Home') {
 	    body_content = body_content + '<form action="file:///home/jeremie/Bureau/20150809_web-project/src/html/action_page.html" method="POST" target="_blank">';
 	    body_content = body_content + '<p>Curent activity : ' + activeActivity;
 	    body_content = body_content + '<p>Started at : ' + activeActivityStart;
@@ -28,14 +65,14 @@ function loadSectionContent(localActiveContent) {
 	    body_content = body_content + '</form>';
 	  }
 	  //History
-	  if (localActiveContent == 'History') {
-        body_content = body_content + '<table style="width:50%"><tr><th>Activity</th><th>Begining</th><th>Duration</th></tr>';
+	  if (localActiveContent == 'History' && localActiveSubContent == 'Home') {
+        body_content = body_content + '<table style="width:100%"><tr><th style="width:40%" >Activity</th><th style="width:22%">Begining</th><th>Duration</th></tr>';
         var _initial = new Date (activeHistory[0][1]); var nowDate = Date(); var _final = new Date(nowDate);
         var delta = Math.round((_final.getTime() - _initial.getTime())/1000)/1;
-  	    body_content = body_content + '<tr><td>' + activeHistory[0][0]+ '</td><td>' + activeHistory[0][1]+ ' </td><td>' + delta + ' sec </td></tr>';
+  	    body_content = body_content + '<tr><td>' + activeHistory[0][0] + '</td><td>' + activeHistory[0][1].substring(0, 24) + ' </td><td>' + delta + ' sec </td></tr>';
 		if (activeHistory.length >= 2) {
 		  for (i = 1; i < activeHistory.length; i++) { 
-				body_content = body_content + '<tr><td>' + activeHistory[i][0]+ '</td><td>' + activeHistory[i][1]+ ' </td><td>' + activeHistory[i][2] + ' sec </td></tr>';
+				body_content = body_content + '<tr><td>' + activeHistory[i][0]+ '</td><td>' + activeHistory[i][1].substring(0, 24) + ' </td><td>' + activeHistory[i][2] + ' sec </td></tr>';
 		  }
 		}
 	    body_content = body_content + '</table>';
