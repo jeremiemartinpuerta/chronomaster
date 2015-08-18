@@ -3,52 +3,45 @@ function loadHeader() {
     content = content + '<h1 title="About Chronomaster"><a href="index.html"><img src="web/images/hmx_logo.png" alt="Humanex logo" style="width:50px;height:40px;border:0" /></a> Chronomaster</h1>';
     document.getElementById("header").innerHTML = content ;
 }
-
 function loadSection(localActiveContent,localActiveSubContent) {
   activeContent = localActiveContent;
   activeSubContentContent = localActiveSubContent;
+  resetNavStyle (localActiveContent);
+  setNavStyle(localActiveContent,localActiveSubContent);
   loadSectionTitle(localActiveSubContent);
   loadSectionNav(localActiveContent);
   loadSectionContent(localActiveContent,localActiveSubContent);
 }
-
 function loadSectionTitle(localActiveSubContent) {
-    if (localActiveSubContent != 'Home') {
       var title_content = '';
-      title_content = title_content + "<h2>" + localActiveSubContent + "</h2>";
+      if (localActiveSubContent != 'Home') {title_content = title_content + "<h3>" + localActiveSubContent + "</h3>";}
       document.getElementById("section_title").innerHTML = title_content ;
-    }
 }
 function loadSectionNav(localActiveContent) {
 	var nav_content = '';
 	  //Profile
 	  if (localActiveContent == 'Profile') {
-        nav_content = nav_content + '<h2>Profile</h2>';
-        nav_content = nav_content + '<table><tr><td>Main</td></tr>';
-        nav_content = nav_content + '<tr><td>Parameters</td></tr>';
-        nav_content = nav_content + '<tr><td>Tips</td></tr></table>';
+        nav_content = nav_content + '<h2><a onclick="loadSection(\'Profile\',\'Home\')">Profile</a></h2>';
+        nav_content = nav_content + '<table><tr><td><a onclick="loadSection(\'Profile\',\'Parameters\')" id="sidenav_Parameters">Parameters</td></tr>';
+        nav_content = nav_content + '<tr><td><a onclick="loadSection(\'Profile\',\'Tips\')" id="sidenav_Tips">Tips</a></td></tr></table>';
 	  }
 	  //Activity
 	  if (localActiveContent == 'Activity') {
-	    nav_content = nav_content + '<h2>Activity</h2>';
-	    nav_content = nav_content + '<table><tr><td>Main</td></tr></table>';
+	    nav_content = nav_content + '<h2><a onclick="loadSection(\'Activity\',\'Home\')">Activity</a></h2>';
 	  }
 	  //History
 	  if (localActiveContent == 'History') {
-        nav_content = nav_content + '<h2>History</h2>';
-        nav_content = nav_content + '<table><tr><td>Main</td></tr>';
-        nav_content = nav_content + '<tr><td>Visualization</td></tr>';
-        nav_content = nav_content + '<tr><td>Request</td></tr></table>';
+        nav_content = nav_content + '<h2><a onclick="loadSection(\'History\',\'Home\')">History</a></h2>';
+        nav_content = nav_content + '<table><tr><td><a onclick="loadSection(\'History\',\'Visualization\')" id="sidenav_Visualization">Visualization</a></td></tr>';
+        nav_content = nav_content + '<tr><td><a onclick="loadSection(\'History\',\'Request\')" id="sidenav_Request">Request</a></td></tr></table>';
 	  }
 	  //Model
 	  if (localActiveContent == 'Model') {
-	    nav_content = nav_content + '<h2>Model</h2>';
-	    nav_content = nav_content + '<table><tr><td>Main</td></tr></table>';
+	    nav_content = nav_content + '<h2><a onclick="loadSection(\'Model\',\'Home\')">Model</a></h2>';
 	  }
 	  //Plan
 	  if (localActiveContent == 'Plan') {
-	    nav_content = nav_content + '<h2>Plan</h2>';
-	    nav_content = nav_content + '<table><tr><td>Main</td></tr></table>';
+	    nav_content = nav_content + '<h2><a onclick="loadSection(\'Plan\',\'Home\')">Plan</a></h2>';
 	  }
 	document.getElementById("nav_body").innerHTML = nav_content ;
 }
@@ -59,7 +52,7 @@ function loadSectionContent(localActiveContent,localActiveSubContent) {
 	  if (localActiveContent == 'Activity' && localActiveSubContent == 'Home') {
 	    body_content = body_content + '<form action="file:///home/jeremie/Bureau/20150809_web-project/src/html/action_page.html" method="POST" target="_blank">';
 	    body_content = body_content + '<p>Curent activity : ' + activeActivity;
-	    body_content = body_content + '<p>Started at : ' + activeActivityStart;
+	    body_content = body_content + '<p>Started at : ' + activeActivityStart.substring(0, 24);
 	    body_content = body_content + '<p>New activity : <input type="text" name="new_activity" placeholder="fill-in with a new activity" autocomplete="on"> ';
 	    body_content = body_content + '<button type="button" onclick="updateCurentActivity(new_activity.value)">Start</button></p>';
 	    body_content = body_content + '</form>';
@@ -77,10 +70,8 @@ function loadSectionContent(localActiveContent,localActiveSubContent) {
 		}
 	    body_content = body_content + '</table>';
 	  }
-	  
 	document.getElementById("section_body").innerHTML = body_content ;
 }
-
 function updateCurentActivity(newCurentActivity) {
   //On met à jour la variable globale de l'activité courante
   activeActivity = newCurentActivity;
@@ -92,5 +83,19 @@ function updateCurentActivity(newCurentActivity) {
   //On insert un nouvelle enregistrement dans l'historique avec l'activité courante
   var newHistory = [activeActivity,activeActivityStart,0];
   activeHistory.unshift(newHistory);
-  loadSectionContent(activeContent);
+  loadSectionContent(activeContent,activeSubContent);
+}
+function resetNavStyle(localActiveContent) {
+	document.getElementById("topnav_Profile").style.backgroundColor = "#3369e8";
+	document.getElementById("topnav_Activity").style.backgroundColor = "#3369e8";
+	document.getElementById("topnav_History").style.backgroundColor = "#3369e8";
+	document.getElementById("topnav_Model").style.backgroundColor = "#3369e8";
+	document.getElementById("topnav_Plan").style.backgroundColor = "#3369e8";
+}
+function setNavStyle(localActiveContent,localActiveSubContent) {
+	  if (localActiveContent == 'Profile') {document.getElementById("topnav_Profile").style.backgroundColor = "#ff6600";}
+	  if (localActiveContent == 'Activity') {document.getElementById("topnav_Activity").style.backgroundColor = "#ff6600";}
+	  if (localActiveContent == 'History') {document.getElementById("topnav_History").style.backgroundColor = "#ff6600";}
+	  if (localActiveContent == 'Model') {document.getElementById("topnav_Model").style.backgroundColor = "#ff6600";}
+	  if (localActiveContent == 'Plan') {document.getElementById("topnav_Plan").style.backgroundColor = "#ff6600";}
 }
