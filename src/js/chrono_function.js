@@ -9,7 +9,7 @@ function loadSection(localActiveContent,localActiveSubContent) {
   resetNavStyle (localActiveContent);
   setNavStyle(localActiveContent,localActiveSubContent);
   loadSectionTitle(localActiveSubContent);
-  loadSectionNav(localActiveContent);
+  loadSectionNav(localActiveContent,localActiveSubContent);
   loadSectionContent(localActiveContent,localActiveSubContent);
 }
 function loadSectionTitle(localActiveSubContent) {
@@ -17,13 +17,15 @@ function loadSectionTitle(localActiveSubContent) {
       if (localActiveSubContent != 'Home') {title_content = title_content + "<h3>" + localActiveSubContent + "</h3>";}
       document.getElementById("section_title").innerHTML = title_content ;
 }
-function loadSectionNav(localActiveContent) {
-	var nav_content = '';
+function loadSectionNav(localActiveContent,localActiveSubContent) {
+	var nav_content = ''; var sideNavSelectedI = '';var sideNavSelectedO = '';
 	  //Profile
 	  if (localActiveContent == 'Profile') {
         nav_content = nav_content + '<h2><a onclick="loadSection(\'Profile\',\'Home\')">Profile</a></h2>';
-        nav_content = nav_content + '<table><tr><td><a onclick="loadSection(\'Profile\',\'Parameters\')" id="sidenav_Parameters">Parameters</td></tr>';
-        nav_content = nav_content + '<tr><td><a onclick="loadSection(\'Profile\',\'Tips\')" id="sidenav_Tips">Tips</a></td></tr></table>';
+        if (localActiveSubContent == 'Parameters') {sideNavSelectedI = '<b>';sideNavSelectedO = '</b>';} else {sideNavSelectedI = '';sideNavSelectedO = '';}
+        nav_content = nav_content + '<table><tr><td><a onclick="loadSection(\'Profile\',\'Parameters\')" class="sidenav_parameters">' + sideNavSelectedI + 'Parameters' + sideNavSelectedO + '</td></tr>';
+        if (localActiveSubContent == 'Tips') {sideNavSelectedI = '<b>';sideNavSelectedO = '</b>';} else {sideNavSelectedI = '';sideNavSelectedO = '';}
+        nav_content = nav_content + '<tr><td><a onclick="loadSection(\'Profile\',\'Tips\')" class="sidenav_tips">' + sideNavSelectedI + 'Tips' + sideNavSelectedO + '</a></td></tr></table>';
 	  }
 	  //Activity
 	  if (localActiveContent == 'Activity') {
@@ -32,8 +34,10 @@ function loadSectionNav(localActiveContent) {
 	  //History
 	  if (localActiveContent == 'History') {
         nav_content = nav_content + '<h2><a onclick="loadSection(\'History\',\'Home\')">History</a></h2>';
-        nav_content = nav_content + '<table><tr><td><a onclick="loadSection(\'History\',\'Visualization\')" id="sidenav_Visualization">Visualization</a></td></tr>';
-        nav_content = nav_content + '<tr><td><a onclick="loadSection(\'History\',\'Request\')" id="sidenav_Request">Request</a></td></tr></table>';
+        if (localActiveSubContent == 'Visualization') {sideNavSelectedI = '<b>';sideNavSelectedO = '</b>';} else {sideNavSelectedI = '';sideNavSelectedO = '';}
+        nav_content = nav_content + '<table><tr><td><a onclick="loadSection(\'History\',\'Visualization\')" class="sidenav_visualization">' + sideNavSelectedI + 'Visualization' + sideNavSelectedO + '</a></td></tr>';
+        if (localActiveSubContent == 'Request') {sideNavSelectedI = '<b>';sideNavSelectedO = '</b>';} else {sideNavSelectedI = '';sideNavSelectedO = '';}
+        nav_content = nav_content + '<tr><td><a onclick="loadSection(\'History\',\'Request\')" class="sidenav_request">' + sideNavSelectedI + 'Request' + sideNavSelectedO + '</a></td></tr></table>';
 	  }
 	  //Model
 	  if (localActiveContent == 'Model') {
@@ -86,16 +90,16 @@ function updateCurentActivity(newCurentActivity) {
   loadSectionContent(activeContent,activeSubContent);
 }
 function resetNavStyle(localActiveContent) {
-	document.getElementById("topnav_Profile").style.backgroundColor = "#3369e8";
-	document.getElementById("topnav_Activity").style.backgroundColor = "#3369e8";
-	document.getElementById("topnav_History").style.backgroundColor = "#3369e8";
-	document.getElementById("topnav_Model").style.backgroundColor = "#3369e8";
-	document.getElementById("topnav_Plan").style.backgroundColor = "#3369e8";
+	document.getElementById("topnav_Profile").className = document.getElementById("topnav_Profile").className.replace( /(?:^|\s)navSelected(?!\S)/g , '' );
+	document.getElementById("topnav_Activity").className = document.getElementById("topnav_Activity").className.replace( /(?:^|\s)navSelected(?!\S)/g , '' );
+	document.getElementById("topnav_History").className = document.getElementById("topnav_History").className.replace( /(?:^|\s)navSelected(?!\S)/g , '' );
+	document.getElementById("topnav_Model").className = document.getElementById("topnav_Model").className.replace( /(?:^|\s)navSelected(?!\S)/g , '' );
+	document.getElementById("topnav_Plan").className = document.getElementById("topnav_Plan").className.replace( /(?:^|\s)navSelected(?!\S)/g , '' );
 }
 function setNavStyle(localActiveContent,localActiveSubContent) {
-	  if (localActiveContent == 'Profile') {document.getElementById("topnav_Profile").style.backgroundColor = "#ff6600";}
-	  if (localActiveContent == 'Activity') {document.getElementById("topnav_Activity").style.backgroundColor = "#ff6600";}
-	  if (localActiveContent == 'History') {document.getElementById("topnav_History").style.backgroundColor = "#ff6600";}
-	  if (localActiveContent == 'Model') {document.getElementById("topnav_Model").style.backgroundColor = "#ff6600";}
-	  if (localActiveContent == 'Plan') {document.getElementById("topnav_Plan").style.backgroundColor = "#ff6600";}
+	  if (localActiveContent == 'Profile') {document.getElementById("topnav_Profile").className += "navSelected";}
+	  if (localActiveContent == 'Activity') {document.getElementById("topnav_Activity").className += "navSelected";}
+	  if (localActiveContent == 'History') {document.getElementById("topnav_History").className += "navSelected";}
+	  if (localActiveContent == 'Model') {document.getElementById("topnav_Model").className += "navSelected";}
+	  if (localActiveContent == 'Plan') {document.getElementById("topnav_Plan").className += "navSelected";}
 }

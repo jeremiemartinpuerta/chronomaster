@@ -1,3 +1,5 @@
+/*Top Nav Menu */
+
 ul#menu {
     padding: 0;
     margin: 10px;
@@ -17,5 +19,18 @@ ul#menu li a {
 }
 
 ul#menu li a:hover {
+    background-color: #ff6600;
+}
+
+ul#menu li a.navSelected {
+    background-color: #ff6600;
+    font-family:arial;
+    color: white;
+    padding: 10px 6.5%;
+    text-decoration: none;
+    border-radius: 0px 0px 0 0;
+}
+
+ul#menu li a.navSelected:hover {
     background-color: #ff6600;
 }

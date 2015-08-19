@@ -1,8 +1,8 @@
 loadHeader();
 var activeContent = "Activity";
 var activeSubContent = "Home";
-var activeActivity = "Aucune";
+var activeActivity = "None";
 var activeActivityStart = Date();
-var firstHistory = ["Aucune",Date(),0];
+var firstHistory = ["None",Date(),0];
 var activeHistory = [firstHistory];
 loadSection(activeContent,activeSubContent)
